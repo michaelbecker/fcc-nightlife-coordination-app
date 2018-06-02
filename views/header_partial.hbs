@@ -1,0 +1,46 @@
+{{! This is the standard html header for this project }}
+
+<html>
+  <head>
+    <title>FreeCodeCamp Nightlife Coordination App</title>
+    <link rel="stylesheet" type="text/css" media="screen" 
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.0/css/bootstrap.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel = "stylesheet" type = "text/css" href = "/style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  </head>
+  
+  <body>
+    
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  {{!<a class="navbar-brand" href="/">FreeCodeCamp Coordination App</a>}}
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  {{! Everything in the collapsible navbar button }}
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+    <a class="nav-link" href="/">Home</a>
+  
+    {{^loggedin}}
+      <a class="nav-link" href="/user/login">Sign in with Github</a>
+    {{/loggedin}}
+
+    {{#loggedin}}
+    
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{session.name}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/user/logout">Logout</a>
+        </div>
+      </div>
+    {{/loggedin}}
+ 
+  </div>
+</nav>    
+

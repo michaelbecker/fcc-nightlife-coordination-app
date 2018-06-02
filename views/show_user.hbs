@@ -1,0 +1,68 @@
+{{! User specific information }}
+{{> header_partial}}
+<div class="container-fluid">
+  
+  {{^session.login}}
+    <p>
+      You are not logged in. Please 
+      <a href="/user/login">login via github.com</a>
+    </p>
+  {{/session.login}}
+
+
+  {{#session}}
+    <div class="jumbotron">
+      <h3 class="display-4 text-center">Hi {{name}}</h3>
+      <a class="btn btn-primary" href="/poll/create" role="button">Create a new poll</a>
+    </div>
+    <h4>Your Polls</h4>
+  {{/session}}
+
+  
+  {{#polls}}
+  
+    <div class="card m-3">
+      <div class="card-header">
+        <h5>
+          <a href="/poll/{{_id}}" class="text-primary">
+            {{name}}
+          </a>
+        </h5>
+      </div>
+      <div class="card-body">
+        
+        <table class="table table-hover table-sm">
+          <thead class="thead-light">
+            <tr>
+              <th>Option</th>
+              <th>Number of Votes</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#options}}
+              <tr>
+                <td>{{name}}</td>
+                <td>{{votes}}</td>
+              </tr>
+            {{/options}}
+          </tbody>
+        </table>
+        
+      </div>
+      <div class="card-footer">
+        
+        <form class="poll-delete-form" action="/poll/delete/{{_id}}" method="post">
+          <button type="submit" class="btn btn-danger">Delete this poll</button>
+        </form>
+        
+      </div>
+    </div>
+
+  {{/polls}}
+
+  
+</div>
+{{> footer_partial}}
+
+<script src="/show_user.js"></script>
+
